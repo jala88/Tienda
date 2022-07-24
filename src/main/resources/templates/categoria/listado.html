@@ -1,15 +1,35 @@
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
--->
+
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>TechShop</title>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="/css/menu.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <div>TODO write content</div>
-    </body>
-</html>
+        <h2 th:replace="layout/plantilla :: header"/>
+        <div class = "contenido">
+            <h2 th:text ="#{categoria.titulo}">Listado de Categorias</h2>
+            <a th:href ="@{/categoria/nuevo}" th:text ="#{categoria.)">Nueva Categoria</a>
+            <div th:if ="${categoria != null and !categorias.empty}">
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th th:text="#{categoria.descripcion}">Descripcion</th>
+                            <th th:text="#{categoria.activo}">Activa</th>
+                            <th th:text="#{accion.eliminar}">Eliminar</th>
+                            <th th:text="#{accion.modificar}">Modificar</th>
+                        </tr>
+                    </thead>
+                    <tbody> 
+                        <tr th:each="categoria:${categorias}">
+                            <td th:text ="${categoria.descripcion}"></td>
+                            <td><input type="checkbox" name ="activo" th:checked ="${categoria.activo}" disabled="true"></td>
+                            <td><a th:href ="@{/categoria/eliminar}+${categoria.idCategoria}"th:text="#{accion.eliminar}">Eliminar</a></td>
+                            <td><a th:href ="@{/categoria/modificar}+${categoria.idCategoria}"th:text="#{accion.actualizar}">Modificar</a></td>
+                        </tr>
+                        </div>
+                    <div th:if ="${categoria == null or categorias.empty}"th:text ="#{categoria.no_mostrar}">
+
+                        </body>
+                        </html>

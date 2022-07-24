@@ -20,9 +20,7 @@ public class IndexController {
     public String inicio(Model model){
         log.info("Ahora utilizamos MVC");
         var articulos=articuloService.getArticulos(true);
-        model.addAttribute("articulos", articulos);
-        
-        
+        model.addAttribute("articulos", articulos);      
         return "index";
     }
     
